@@ -1,0 +1,33 @@
+header {
+  background-color: #bfff99; 
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+
+header nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 15px;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+footer {
+  background-color: #bfff99;
+  padding: 15px 0;
+  text-align: center;
+  margin-top: 40px;
+  border-top: 1px solid #a0e673;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f8f8f8;
+}
