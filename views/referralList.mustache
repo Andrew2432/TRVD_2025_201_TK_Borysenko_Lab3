@@ -1,0 +1,26 @@
+{{> header}}
+<h1>Списки направлень</h1>
+
+<a href="/referralLists/create">+ Додати список</a>
+
+{{#referralLists}}
+  <div style="border: 1px solid #ccc; padding: 10px; margin: 10px;">
+    <h3>Лікар: {{doctor.name}} ({{doctor.specialization}})</h3>
+    <ul>
+      {{#referrals}}
+        <li>{{description}} ({{date}})</li>
+      {{/referrals}}
+    </ul>
+
+    <form action="/referralLists/{{_id}}/delete" method="POST" style="display:inline;">
+      <button type="submit" onclick="return confirm('Ви впевнені, що хочете видалити?')"> Видалити</button>
+    </form>
+
+    <a href="/referralLists/{{_id}}/edit"> Редагувати</a>
+  </div>
+{{/referralLists}}
+
+{{^referralLists}}
+  <p>Немає створених списків направлень.</p>
+{{/referralLists}}
+{{> footer}}

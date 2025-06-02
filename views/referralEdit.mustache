@@ -1,0 +1,28 @@
+{{> header}}
+
+<h1>Редагувати направлення</h1>
+<form action="/referrals/edit/{{referral._id}}" method="POST">
+  <div>
+    <label for="referralDate">Дата направлення:</label>
+    <input type="date" name="referralDate" id="referralDate" value="{{referral.referralDate}}" required>
+  </div>
+  <div>
+    <label for="description">Опис:</label>
+    <textarea name="description" id="description" required>{{referral.description}}</textarea>
+  </div>
+  <div>
+    <label for="issuedTo">Кому направлено:</label>
+    <input type="text" name="issuedTo" id="issuedTo" value="{{referral.issuedTo}}" required>
+  </div>
+  <div>
+    <label for="status">Статус:</label>
+    <select name="status" id="status">
+      <option value="pending" {{#referral}}{{#isPending}}selected{{/isPending}}{{/referral}}>В очікуванні</option>
+      <option value="completed" {{#referral}}{{#isCompleted}}selected{{/isCompleted}}{{/referral}}>Завершено</option>
+    </select>
+  </div>
+  <button type="submit">Зберегти</button>
+</form>
+<p><a href="/referrals">← Повернутися до списку</a></p>
+
+{{> footer}}

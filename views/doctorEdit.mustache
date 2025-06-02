@@ -1,0 +1,21 @@
+{{> header}}
+
+<h1>Редагувати лікаря</h1>
+<form action="/doctors/{{doctor._id}}/edit" method="POST" enctype="multipart/form-data">
+  <input type="text"  name="name"           value="{{doctor.name}}"           required><br>
+  <input type="text"  name="specialization" value="{{doctor.specialization}}"  required><br>
+  <input type="text"  name="phone"          value="{{doctor.phone}}"><br>
+  <input type="email" name="email"          value="{{doctor.email}}"><br>
+
+  <label>Поточне фото:</label><br>
+  {{#doctor.photo}}
+    <img src="{{doctor.photo}}" alt="Фото лікаря" style="height:100px;"><br>
+  {{/doctor.photo}}
+
+  <label>Нове фото (не обов'язково):</label><br>
+  <input type="file" name="photo" accept="image/*"><br>
+  <button type="submit">Зберегти</button>
+</form>
+<p><a href="/doctors">← Повернутися до списку</a></p>
+
+{{> footer}}

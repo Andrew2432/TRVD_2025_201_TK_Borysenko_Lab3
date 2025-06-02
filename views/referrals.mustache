@@ -1,0 +1,66 @@
+{{> header}}
+
+<h1>Список направлень</h1>
+
+<!-- Форма створення нового направлення -->
+<h2>Додати нове направлення</h2>
+<form action="/referrals" method="POST">
+  <div>
+    <label for="referralDate">Дата направлення:</label>
+    <input type="date" name="referralDate" id="referralDate" 
+           value="{{newReferral.referralDate}}" required>
+  </div>
+  <div>
+    <label for="description">Опис:</label>
+    <textarea name="description" id="description" required>{{newReferral.description}}</textarea>
+  </div>
+  <div>
+    <label for="issuedTo">Кому направлено:</label>
+    <input type="text" name="issuedTo" id="issuedTo" 
+           value="{{newReferral.issuedTo}}" placeholder="Вкажіть ім'я" required>
+  </div>
+  <div>
+    <label for="status">Статус:</label>
+    <select name="status" id="status">
+      <option value="pending" {{#newReferral}}{{#isPending}}selected{{/isPending}}{{/newReferral}}>В очікуванні</option>
+      <option value="completed" {{#newReferral}}{{#isCompleted}}selected{{/isCompleted}}{{/newReferral}}>Завершено</option>
+    </select>
+  </div>
+  <div>
+    <label for="doctor">Лікар:</label>
+    <select name="doctor" id="doctor" required>
+      {{#doctors}}
+        <option value="{{_id}}" {{#newReferral}}{{#isDoctorSelected}}selected{{/isDoctorSelected}}{{/newReferral}}>
+          {{name}} ({{specialization}})
+        </option>
+      {{/doctors}}
+    </select>
+  </div>
+  {{#error}}<div class="error">{{error}}</div>{{/error}}
+  <button type="submit">Додати</button>
+</form>
+
+<hr>
+
+<!-- Список існуючих направлень -->
+<ul>
+  {{#referrals}}
+    <li>
+      <p><strong>Дата:</strong> {{referralDate}}</p>
+      <p><strong>Опис:</strong> {{description}}</p>
+      <p><strong>Кому направлено:</strong> {{issuedTo}}</p>
+      <p><strong>Статус:</strong> {{status}}</p>
+      <p><strong>Лікар:</strong> {{doctor.name}}</p>
+      <a href="/referrals/{{_id}}/edit">Редагувати</a>
+      <form action="/referrals/{{_id}}/delete" method="POST" style="display:inline;">
+        <button type="submit">Видалити</button>
+      </form>
+    </li>
+    <hr>
+  {{/referrals}}
+  {{^referrals}}
+    <li>Направлення не знайдені</li>
+  {{/referrals}}
+</ul>
+
+{{> footer}}

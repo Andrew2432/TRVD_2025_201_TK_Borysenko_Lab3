@@ -1,0 +1,17 @@
+{{> header}}
+<h1>{{#referralList}}Редагувати{{/referralList}}{{^referralList}}Створити{{/referralList}} список направлень</h1>
+
+<form method="POST" action="{{#referralList}}/referralLists/{{referralList._id}}/edit{{/referralList}}{{^referralList}}/referralLists/create{{/referralList}}">
+  <label for="doctor">Лікар:</label>
+  <select name="doctor" required>
+    <option value="">-- Оберіть лікаря --</option>
+    {{#doctors}}
+      <option value="{{_id}}" {{#selected}}selected{{/selected}}>
+        {{name}} ({{specialization}})
+      </option>
+    {{/doctors}}
+  </select>
+  <br><br>
+  <button type="submit"> Зберегти</button>
+</form>
+{{> footer}}
